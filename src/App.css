@@ -1,0 +1,36 @@
+.comment-list-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .content {
+    width: 500px;
+  }
+}
+
+.button-row {
+  display: flex;
+  width: 100%;
+}
+
+.article {
+  width: 400px;
+  background-color: antiquewhite;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-left: 2px solid black;
+}
+
+.blank {
+  margin: 0px;
+  margin-bottom: 5px;
+  border: none;
+}
