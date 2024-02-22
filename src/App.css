@@ -13,14 +13,6 @@
   width: 100%;
 }
 
-.article {
-  width: 400px;
-  background-color: antiquewhite;
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
 .comment {
   margin-left: 20px;
   display: flex;
