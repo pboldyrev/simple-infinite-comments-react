@@ -22,6 +22,7 @@ function Comment({ comment, deleteCommentFromParent }) {
     }
     const newComment = {
       text: reply,
+      id: getId(),
       childComments: [],
     };
     setReply("");
@@ -29,8 +30,7 @@ function Comment({ comment, deleteCommentFromParent }) {
     setChildComments((prevComments) => {
       let updatedChildren = [
         <Comment
-          key={getId()}
-          id={getId()}
+          key={newComment.id}
           deleteCommentFromParent={deleteComment}
           comment={newComment}
         ></Comment>,
@@ -42,9 +42,7 @@ function Comment({ comment, deleteCommentFromParent }) {
 
   const deleteComment = (id) => {
     setChildComments((prevChildren) => {
-      return prevChildren.filter((child) => {
-        child.props.id !== id;
-      });
+      return prevChildren.filter((child) => child.props.comment.id !== id);
     });
   };
 
@@ -58,7 +56,9 @@ function Comment({ comment, deleteCommentFromParent }) {
       {!showInput && comment.text && (
         <div className="button-row">
           <button onClick={() => setShowInput(true)}>Reply</button>
-          <button onClick={deleteCommentFromParent}>Delete</button>
+          <button onClick={() => deleteCommentFromParent(comment.id)}>
+            Delete
+          </button>
         </div>
       )}
       {(showInput || !comment.text) && (
@@ -70,7 +70,9 @@ function Comment({ comment, deleteCommentFromParent }) {
           ></input>
           <div className="button-row">
             <button onClick={addChildComment}>Reply</button>
-            <button onClick={() => setShowInput(false)}>Cancel</button>
+            {comment.text && (
+              <button onClick={() => setShowInput(false)}>Cancel</button>
+            )}
           </div>
         </>
       )}
